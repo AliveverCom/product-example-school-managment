@@ -1,0 +1,60 @@
+%%{init: {"theme": "base", "themeVariables": {"background": "#ffffff", "primaryColor": "#ffffff", "secondaryColor": "#ffffff", "tertiaryColor": "#ffffff", "primaryTextColor": "#1f2937", "lineColor": "#64748b", "fontFamily": "PingFang SC, Microsoft YaHei, sans-serif"}}}%%
+flowchart LR
+    subgraph core[核心业务对象]
+        direction TB
+        student[学生]
+        teacher[老师]
+        classRoom[班级]
+        course[课程]
+    end
+
+    subgraph teaching[教学测评对象]
+        direction TB
+        exam[考试]
+        score[成绩]
+    end
+
+    subgraph mapping[关系映射对象]
+        direction TB
+        courseTeacher[课程-老师对照表]
+        classTeacher[班级-老师对照表]
+        classStudent[班级-学生对照表]
+        classCourseTeacher[班级-课程-老师对照表]
+    end
+
+    classRoom --> teacher
+    exam --> course
+    exam --> classRoom
+    score --> student
+    score --> exam
+
+    courseTeacher --> course
+    courseTeacher --> teacher
+
+    classTeacher --> classRoom
+    classTeacher --> teacher
+
+    classStudent --> classRoom
+    classStudent --> student
+
+    classCourseTeacher --> classRoom
+    classCourseTeacher --> course
+    classCourseTeacher --> teacher
+
+    classDef coreNode fill:#eef7ff,stroke:#7aa6d8,stroke-width:1.2px,color:#1f2937;
+    classDef teachingNode fill:#eefcf3,stroke:#78b88f,stroke-width:1.2px,color:#1f2937;
+    classDef mappingNode fill:#fff8e8,stroke:#d8b56a,stroke-width:1.2px,color:#1f2937;
+
+    class student,teacher,classRoom,course coreNode;
+    class exam,score teachingNode;
+    class courseTeacher,classTeacher,classStudent,classCourseTeacher mappingNode;
+
+    linkStyle 0,6,8,13 stroke:#f59e0b,stroke-width:2.4px;
+    linkStyle 1,5,12 stroke:#3b82f6,stroke-width:2.4px;
+    linkStyle 2,7,9,11 stroke:#10b981,stroke-width:2.4px;
+    linkStyle 3,10 stroke:#ef4444,stroke-width:2.4px;
+    linkStyle 4 stroke:#8b5cf6,stroke-width:2.2px;
+
+    style core fill:#f8fbff,stroke:#c7d9ee,stroke-width:1px,color:#1f2937;
+    style teaching fill:#f7fff9,stroke:#c7e7cf,stroke-width:1px,color:#1f2937;
+    style mapping fill:#fffdf7,stroke:#ead9ab,stroke-width:1px,color:#1f2937;
