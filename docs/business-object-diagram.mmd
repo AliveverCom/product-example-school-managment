@@ -4,7 +4,7 @@ flowchart LR
         direction TB
         student[学生]
         teacher[老师]
-        classRoom[班级]
+        schoolClass[班级]
         course[课程]
     end
 
@@ -17,27 +17,23 @@ flowchart LR
     subgraph mapping[关系映射对象]
         direction TB
         courseTeacher[课程-老师对照表]
-        classTeacher[班级-老师对照表]
         classStudent[班级-学生对照表]
         classCourseTeacher[班级-课程-老师对照表]
     end
 
-    classRoom --> teacher
+    schoolClass -->|班主任| teacher
     exam --> course
-    exam --> classRoom
+    exam --> schoolClass
     score --> student
     score --> exam
 
     courseTeacher --> course
     courseTeacher --> teacher
 
-    classTeacher --> classRoom
-    classTeacher --> teacher
-
-    classStudent --> classRoom
+    classStudent --> schoolClass
     classStudent --> student
 
-    classCourseTeacher --> classRoom
+    classCourseTeacher --> schoolClass
     classCourseTeacher --> course
     classCourseTeacher --> teacher
 
@@ -45,15 +41,14 @@ flowchart LR
     classDef teachingNode fill:#eefcf3,stroke:#78b88f,stroke-width:1.2px,color:#1f2937;
     classDef mappingNode fill:#fff8e8,stroke:#d8b56a,stroke-width:1.2px,color:#1f2937;
 
-    class student,teacher,classRoom,course coreNode;
+    class student,teacher,schoolClass,course coreNode;
     class exam,score teachingNode;
-    class courseTeacher,classTeacher,classStudent,classCourseTeacher mappingNode;
+    class courseTeacher,classStudent,classCourseTeacher mappingNode;
 
-    linkStyle 0,6,8,13 stroke:#f59e0b,stroke-width:2.4px;
-    linkStyle 1,5,12 stroke:#3b82f6,stroke-width:2.4px;
-    linkStyle 2,7,9,11 stroke:#10b981,stroke-width:2.4px;
-    linkStyle 3,10 stroke:#ef4444,stroke-width:2.4px;
-    linkStyle 4 stroke:#8b5cf6,stroke-width:2.2px;
+    linkStyle 0,5,7 stroke:#f59e0b,stroke-width:2.4px;
+    linkStyle 1,4,8 stroke:#3b82f6,stroke-width:2.4px;
+    linkStyle 2,6,9 stroke:#10b981,stroke-width:2.4px;
+    linkStyle 3 stroke:#ef4444,stroke-width:2.4px;
 
     style core fill:#f8fbff,stroke:#c7d9ee,stroke-width:1px,color:#1f2937;
     style teaching fill:#f7fff9,stroke:#c7e7cf,stroke-width:1px,color:#1f2937;
